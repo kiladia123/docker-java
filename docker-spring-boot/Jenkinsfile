@@ -21,7 +21,7 @@ node {
    stage('push') {
         
         sh'''
-               sudo aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 714549394535.dkr.ecr.us-east-1.amazonaws.com 
+               sudo aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 714549394535.dkr.ecr.us-east-1.amazonaws.com 
                 sudo docker tag alpha007:latest 714549394535.dkr.ecr.us-east-1.amazonaws.com/alpha007:latest
                 sudo docker push 714549394535.dkr.ecr.us-east-1.amazonaws.com/alpha007:latest
                 
@@ -31,8 +31,8 @@ node {
     stage('run') {
         
         sh'''
-                sudo docker stop springboot && sudo docker rm springboot 
-                sudo docker run --name springboot -d -p 8090:8080 -t springboot:latest
+                sudo docker stop alpha007 && sudo docker rm alpha007 
+                sudo docker run --name alpha007 -d -p 8090:8080 -t alpha007:latest
                 echo 'containers running'
         '''
     }
