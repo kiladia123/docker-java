@@ -21,6 +21,8 @@ node {
    stage('Docker-Build') {
         
                 sh '''
+                pwd
+                cd docker-spring-boot
                 sudo docker build -t alpha007 .
                 '''
             
