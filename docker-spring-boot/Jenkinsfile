@@ -7,17 +7,26 @@ node {
         git 'https://github.com/kiladia123/docker-java.git'
        
     }
-    stage('Build') {
+    stage('Maven-Build') {
         
                 sh '''
                 pwd
                 cd docker-spring-boot
                 mvn clean package
+                '''
+            
+        
+    }
+   
+   stage('Docker-Build') {
+        
+                sh '''
                 sudo docker build -t alpha007 .
                 '''
             
         
     }
+   
    stage('push') {
         
         sh'''
